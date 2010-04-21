@@ -42,4 +42,16 @@ app Apps::Ranger {
         uses VMware::VIRuntime, Data::Dumper;
         page_link_label Inventory;
     }
+
+	controller VMware {
+		rel_location vmware;
+		uses VMware::VIRuntime, Data::Dumper;
+		page_link_label VMware;
+	}
+	
+	controller VMware::ESX {
+		rel_location `vmware/esx`;
+		uses VMware::VIRuntime, Data::Dumper;
+		page_link_label `Vmware - ESX`;
+	}
 }

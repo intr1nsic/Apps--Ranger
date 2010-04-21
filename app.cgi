@@ -19,6 +19,8 @@ my $cgi = Gantry::Engine::CGI->new( {
     locations => {
         '/' => 'Apps::Ranger',
         '/inventory' => 'Apps::Ranger::Inventory',
+        '/vmware' => 'Apps::Ranger::VMware',
+        '/vmware/esx' => 'Apps::Ranger::VMware::ESX',
     },
 } );
 

@@ -3,7 +3,7 @@ package Apps::Ranger;
 use strict;
 use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use base 'Apps::GENRanger';
 use VMware::VIRuntime;

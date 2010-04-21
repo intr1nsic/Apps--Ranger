@@ -133,6 +133,8 @@ sub site_links {
 
     return [
         { link => $self->app_rootp() . '/inventory', label => 'Inventory' },
+        { link => $self->app_rootp() . '/vmware', label => 'VMware' },
+        { link => $self->app_rootp() . '/vmware/esx', label => 'Vmware - ESX' },
     ];
 } # END site_links
 
