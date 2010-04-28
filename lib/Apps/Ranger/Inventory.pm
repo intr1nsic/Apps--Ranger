@@ -10,56 +10,8 @@ use Data::Dumper qw(
     Dumper
 );
 
-sub do_main {
-    
-    my ( $self ) = @_;
-    
-    $self->stash->view->template( 'inventory.tt' );
-    $self->stash->view->title( 'Inventory Listing' );
 
-    $self->stash->view->data( { 
-                        virtualmachines => $self->_get_virtualmachines(),
-                        virtualhosts    => $self->_get_virtualhosts(), } );
-}
 
-sub _get_virtualmachines {
-    my ( $self ) = @_;
-    
-    Vim::load_session( session_file => $self->session_file() );
-    
-    my $entity_views = Vim::find_entity_views( view_type => "VirtualMachine" );
-    return $entity_views;
-}
-
-sub _get_virtualhosts {
-    my ( $self ) = @_;
-    
-    Vim::load_session( session_file => $self->session_file() );
-    
-    my $entity_views = Vim::find_entity_views( view_type => "HostSystem" );
-    return $entity_views;
-}
-
-sub _get_entitydetail {
-    my ( $self, $entity ) = @_;
-    
-    Vim::load_session( session_file => $self->session_file() );
-    my $entity_detail = Vim::find_entity_view( view_type => 'VirtualMachine', filter => { name => $entity } );
-    return $entity_detail;
-}
-
-sub do_status {
-    my ( $self, $entity ) = @_;
-    
-    $self->stash->view->template( 'inventory_detail.tt' );
-    $self->stash->view->title( 'Inventory Detail' );
-    my $entity_details = $self->_get_entitydetail( $entity );
-    my $entity_name = $entity_details->name;
-    my $entity_guest = $entity_details->guest;
-	$self->stash->view->data( { virtualmachine_name     => $entity_details->name,
-	                            virtualmachine_guest    => $entity_details->guest,
-								virtualmachine_status	=> $entity_details->summary->quickStats, } );
-}
 
 1;
 

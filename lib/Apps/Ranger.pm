@@ -3,29 +3,10 @@ package Apps::Ranger;
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.01';
 
 use base 'Apps::GENRanger';
-use VMware::VIRuntime;
 
-
-##-----------------------------------------------------------------
-## $self->init( $r )
-##-----------------------------------------------------------------
-sub init {
-    my ( $self, $req ) = @_;
-    
-    # process SUPER's init code
-    $self->SUPER::init( $req );
-    
-    Vim::login(
-        service_url => $self->service_url,
-        user_name   => $self->username,
-        password    => $self->password,
-    );
-    Vim::save_session( session_file => $self->session_file );
-    
-} # END init
 
 #-----------------------------------------------------------------
 # $self->do_main(  )
@@ -34,6 +15,12 @@ sub init {
 
 #-----------------------------------------------------------------
 # $self->site_links(  )
+#-----------------------------------------------------------------
+# This method inherited from Apps::GENRanger
+
+
+#-----------------------------------------------------------------
+# $self->init( $r )
 #-----------------------------------------------------------------
 # This method inherited from Apps::GENRanger
 
@@ -100,6 +87,22 @@ You might even want to describe the table this module controls here.
 
 =item schema_base_class
 
+=item session_file
+
+=item set_session_file
+
+=item username
+
+=item set_username
+
+=item password
+
+=item set_password
+
+=item service_url
+
+=item set_service_url
+
 
 =back
 
@@ -109,6 +112,8 @@ You might even want to describe the table this module controls here.
     Gantry
     Apps::GENRanger
     Apps::Ranger::Inventory
+    Apps::Ranger::VMware
+    Apps::Ranger::VMware::ESX
 
 =head1 AUTHOR
 

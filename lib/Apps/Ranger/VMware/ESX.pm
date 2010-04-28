@@ -10,8 +10,76 @@ use Data::Dumper qw(
     Dumper
 );
 
+my %entities  = (
+        datacenter      => 'datacenter',
+        folder          => 'folder',
+        resource_pool   => 'resourcepool',
+        vm              => 'VirtualMachine',
+        host            => 'HostSystem', 
+    );
 
+#-----------------------------------------------------------------
+# $self->create_session()
+# param username
+# param password
+#-----------------------------------------------------------------
+sub create_session {
+    my ( $self, $username, $password ) = @_;
+    
+    Vim::login(
+        service_url => $self->service_url;
+        user_name   => $susername,
+        password    => $password,
+    );
+    
+    eval(
+        Vim::save_session( session_file => $elf->session_file() );
+    )
+    die(@_) if @_;    
+}
 
+#-----------------------------------------------------------------
+# $self->load_session()
+#-----------------------------------------------------------------
+sub load_session {
+    my ( $self ) = @_;
+    
+    return Vim::load_session( session_file => $self->session_file() );
+}
+
+#-----------------------------------------------------------------
+# $self->get_hosts()
+#-----------------------------------------------------------------
+sub get_hosts {
+    my ( $self ) = @_;
+    
+    my $hosts = Vim::find_entity_view( view_type => $entities{'host'} );
+    return $hosts;
+}
+
+#-----------------------------------------------------------------
+# $self->get_vms()
+#-----------------------------------------------------------------
+sub get_vms {
+    my ( $self ) = @_;
+
+    my $vms = Vim::find_entity_views( view_type => $entities{'vm'} );
+    return $vms;
+}
+
+#-----------------------------------------------------------------
+# $self->get_details()
+#-----------------------------------------------------------------
+sub get_details {
+    my ( $self, $mo_ref, $entity ) = @_;
+    
+    my $entity_details = Vim::find_entity_view(
+        view_type   => $mo_ref,
+        filter      => { name => $entity },
+    );
+    
+    return $entity_details;
+}
 
 1;
 

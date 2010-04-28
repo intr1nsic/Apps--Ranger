@@ -24,7 +24,7 @@ app Apps::Ranger {
         service_url `https:///sdk/webService`;
     }
     config CGI {
-        dbconn `dbi:SQLite:dbname=/home/mwelch/Apps-Ranger/app.db` => no_accessor;
+        dbconn `dbi:SQLite:dbname=/tmp/app.db` => no_accessor;
         app_rootp `/cgi-bin/apps-ranger.cgi` => no_accessor;
         session_file `/tmp/vmware_session`;
         username username;
@@ -46,12 +46,10 @@ app Apps::Ranger {
 	controller VMware {
 		rel_location vmware;
 		uses VMware::VIRuntime, Data::Dumper;
-		page_link_label VMware;
 	}
 	
 	controller VMware::ESX {
 		rel_location `vmware/esx`;
 		uses VMware::VIRuntime, Data::Dumper;
-		page_link_label `Vmware - ESX`;
 	}
 }
