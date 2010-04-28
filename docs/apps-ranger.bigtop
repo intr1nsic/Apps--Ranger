@@ -52,4 +52,9 @@ app Apps::Ranger {
 		rel_location `vmware/esx`;
 		uses VMware::VIRuntime, Data::Dumper;
 	}
+	
+	controller VMware::VM {
+		rel_location `vmware/vm`;
+		uses VMware::VIRuntime, Data::Dumper;
+	}
 }

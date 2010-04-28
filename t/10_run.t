@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 4;
+use Test::More tests => 5;
 
 use Apps::Ranger qw{
     -Engine=CGI
@@ -31,6 +31,7 @@ my $cgi = Gantry::Engine::CGI->new( {
         '/inventory' => 'Apps::Ranger::Inventory',
         '/vmware' => 'Apps::Ranger::VMware',
         '/vmware/esx' => 'Apps::Ranger::VMware::ESX',
+        '/vmware/vm' => 'Apps::Ranger::VMware::VM',
     },
 } );
 
@@ -39,6 +40,7 @@ my @tests = qw(
     /inventory
     /vmware
     /vmware/esx
+    /vmware/vm
 );
 
 my $server = Gantry::Server->new();
@@ -49,10 +51,10 @@ SKIP: {
     eval {
         require DBD::SQLite;
     };
-    skip 'DBD::SQLite is required for run tests.', 4 if ( $@ );
+    skip 'DBD::SQLite is required for run tests.', 5 if ( $@ );
 
     unless ( -f 'app.db' ) {
-        skip 'app.db sqlite database required for run tests.', 4;
+        skip 'app.db sqlite database required for run tests.', 5;
     }
 
     foreach my $location ( @tests ) {
