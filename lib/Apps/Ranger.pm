@@ -13,6 +13,12 @@ sub init {
     my ($self, $r) = @_;
     
     $self->SUPER::init($r);
+    
+    Apps::Ranger::VMware->new( $self->service_url,
+                                    $self->session_path, 
+                                    $self->credstore,
+                                    $self->username,
+                                    $self->password );
 }
 
 #-----------------------------------------------------------------
@@ -22,12 +28,32 @@ sub init {
 
 sub do_main {
     my ( $self ) = @_;
-    my $test = Apps::Ranger::VMware->new( $self->service_url,
-                                          $self->session_path, 
-                                          $self->credstore,
-                                          $self->username,
-                                          $self->password );
-    print Dumper( $test );
+
+    my $poweredoff = 0;
+    my $poweredon = 0;
+    my $machines_ood = 0;
+    my $machines_ok = 0;
+    my $machines_no = 0;
+
+    my $entity_views = Vim::find_entity_views( view_type => 'VirtualMachine' );
+    
+    foreach my $entity_view ( @$entity_views ) {
+        print "<b>" . $entity_view->name . "</b><br />";
+        
+        if( $entity_view->runtime->powerState->val eq 'poweredOn' ) {
+            print "-Powered On<br />";
+            $poweredon++;
+        }
+        else
+        {
+            print "-Powered Off<br />";
+            $poweredoff++;
+        }
+        print "--" . $entity_view->guest->toolsStatus->val . "<br />";
+        print "----------------------------------<br /><br />";
+    }
+
+    print "Total Systems on: $poweredon and Total Systems off: $poweredoff and a total of " . scalar(@$entity_views) . " machines<br />";
 }
 
 #-----------------------------------------------------------------

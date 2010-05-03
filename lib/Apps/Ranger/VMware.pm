@@ -149,17 +149,18 @@ sub _get_creds {
 sub _remove_creds {
     my ( $self, $username ) = @_;
     
-    if( unlink( $self->{session_file} ) == 0 ) {
-        # Remove the credentials
-        VMware::VICredStore::remove_password(
-                server      => $self->{service_url},
-                username    => $username,
-            );
-
-        return "Removed user: $username";
-    } else {
-        return "Error removing session file";
+    # Delete session file
+    if( -e $self->{session_file} ) {
+        unlink( $self->{session_file} );
     }
+
+    # Remove the credentials
+    VMware::VICredStore::remove_password(
+            server      => $self->{service_url},
+            username    => $username,
+        );
+    
+    return 1;
 }
 
 sub _remove_all_creds {
