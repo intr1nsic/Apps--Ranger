@@ -18,18 +18,20 @@ app Apps::Ranger {
         template_wrapper `genwrapper.tt` => no_accessor;
         doc_rootp `/static` => no_accessor;
         show_dev_navigation 1 => no_accessor;
-        session_file `/tmp/vmware_session`;
+        session_path `/tmp/`;
         username username;
         password password;
         service_url `https:///sdk/webService`;
+		credstore `/etc/gantry.d/vmware_credstore.xml`;
     }
     config CGI {
         dbconn `dbi:SQLite:dbname=/tmp/app.db` => no_accessor;
         app_rootp `/cgi-bin/apps-ranger.cgi` => no_accessor;
-        session_file `/tmp/vmware_session`;
+        session_path `/tmp/`;
         username username;
         password password;
         service_url `https:///webService`;
+		credstore `/etc/gantry.d/vmware_credstore.xml`;
     }
     controller is base_controller {
         method do_main is base_links {
@@ -45,7 +47,7 @@ app Apps::Ranger {
 
 	controller VMware {
 		rel_location vmware;
-		uses VMware::VIRuntime, Data::Dumper;
+		uses VMware::VIRuntime, Data::Dumper, VMware::VICredStore;
 	}
 	
 	controller VMware::ESX {
@@ -55,6 +57,16 @@ app Apps::Ranger {
 	
 	controller VMware::VM {
 		rel_location `vmware/vm`;
+		uses VMware::VIRuntime, Data::Dumper;
+	}
+	
+	controller VMware::Pool {
+		rel_location `vmware/pool`;
+		uses VMware::VIRuntime, Data::Dumper;
+	}
+	
+	controller VMware::Datacenter {
+		rel_location `vmware/datacenter`;
 		uses VMware::VIRuntime, Data::Dumper;
 	}
 }

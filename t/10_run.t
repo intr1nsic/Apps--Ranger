@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 5;
+use Test::More tests => 7;
 
 use Apps::Ranger qw{
     -Engine=CGI
@@ -17,10 +17,11 @@ use Gantry::Engine::CGI;
 my $cgi = Gantry::Engine::CGI->new( {
     config => {
         dbconn => 'dbi:SQLite:dbname=app.db',
+        credstore => '/etc/gantry.d/vmware_credstore.xml',
         doc_rootp => '/static',
         password => 'password',
         service_url => 'https:///sdk/webService',
-        session_file => '/tmp/vmware_session',
+        session_path => '/tmp/',
         show_dev_navigation => '1',
         template_wrapper => 'genwrapper.tt',
         username => 'username',
@@ -32,6 +33,8 @@ my $cgi = Gantry::Engine::CGI->new( {
         '/vmware' => 'Apps::Ranger::VMware',
         '/vmware/esx' => 'Apps::Ranger::VMware::ESX',
         '/vmware/vm' => 'Apps::Ranger::VMware::VM',
+        '/vmware/pool' => 'Apps::Ranger::VMware::Pool',
+        '/vmware/datacenter' => 'Apps::Ranger::VMware::Datacenter',
     },
 } );
 
@@ -41,6 +44,8 @@ my @tests = qw(
     /vmware
     /vmware/esx
     /vmware/vm
+    /vmware/pool
+    /vmware/datacenter
 );
 
 my $server = Gantry::Server->new();
@@ -51,10 +56,10 @@ SKIP: {
     eval {
         require DBD::SQLite;
     };
-    skip 'DBD::SQLite is required for run tests.', 5 if ( $@ );
+    skip 'DBD::SQLite is required for run tests.', 7 if ( $@ );
 
     unless ( -f 'app.db' ) {
-        skip 'app.db sqlite database required for run tests.', 5;
+        skip 'app.db sqlite database required for run tests.', 7;
     }
 
     foreach my $location ( @tests ) {

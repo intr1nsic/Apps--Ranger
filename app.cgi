@@ -22,6 +22,8 @@ my $cgi = Gantry::Engine::CGI->new( {
         '/vmware' => 'Apps::Ranger::VMware',
         '/vmware/esx' => 'Apps::Ranger::VMware::ESX',
         '/vmware/vm' => 'Apps::Ranger::VMware::VM',
+        '/vmware/pool' => 'Apps::Ranger::VMware::Pool',
+        '/vmware/datacenter' => 'Apps::Ranger::VMware::Datacenter',
     },
 } );
 

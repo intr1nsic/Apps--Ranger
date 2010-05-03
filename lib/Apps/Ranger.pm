@@ -6,12 +6,29 @@ use warnings;
 our $VERSION = '0.01';
 
 use base 'Apps::GENRanger';
+use Apps::Ranger::VMware;
+use Data::Dumper;
 
+sub init {
+    my ($self, $r) = @_;
+    
+    $self->SUPER::init($r);
+}
 
 #-----------------------------------------------------------------
 # $self->do_main(  )
 #-----------------------------------------------------------------
 # This method inherited from Apps::GENRanger
+
+sub do_main {
+    my ( $self ) = @_;
+    my $test = Apps::Ranger::VMware->new( $self->service_url,
+                                          $self->session_path, 
+                                          $self->credstore,
+                                          $self->username,
+                                          $self->password );
+    print Dumper( $test );
+}
 
 #-----------------------------------------------------------------
 # $self->site_links(  )

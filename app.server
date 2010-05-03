@@ -23,7 +23,7 @@ my $dbname;
 
 my $conf_instance = 'apps_ranger';
 my $conf_type;
-my $conf_file     = 'docs/app.gantry.conf';
+my $conf_file     = '/etc/gantry.d/app.gantry.conf';
 
 GetOptions(
     'dbd|d=s'      => \$dbd,
@@ -63,6 +63,8 @@ my $cgi = Gantry::Engine::CGI->new( {
         '/vmware' => 'Apps::Ranger::VMware',
         '/vmware/esx' => 'Apps::Ranger::VMware::ESX',
         '/vmware/vm' => 'Apps::Ranger::VMware::VM',
+        '/vmware/pool' => 'Apps::Ranger::VMware::Pool',
+        '/vmware/datacenter' => 'Apps::Ranger::VMware::Datacenter',
     },
 } );
 

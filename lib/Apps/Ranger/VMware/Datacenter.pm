@@ -1,4 +1,4 @@
-package Apps::Ranger::VMware::ESX;
+package Apps::Ranger::VMware::Datacenter;
 
 use strict;
 use warnings;
@@ -10,18 +10,14 @@ use Data::Dumper qw(
     Dumper
 );
 
-sub get_inventory {
-	my ( $self ) = @_;
-	
-	my $entities = Vim::find_entity_views( view_type => "HostSystem" );
-	return $entities;
-}
+
+
 
 1;
 
 =head1 NAME
 
-Apps::Ranger::VMware::ESX - A controller in the Apps::Ranger application
+Apps::Ranger::VMware::Datacenter - A controller in the Apps::Ranger application
 
 =head1 SYNOPSIS
 
@@ -30,14 +26,14 @@ Perl block of an httpd.conf file.
 
 Stand Alone Server or CGI script:
 
-    use Apps::Ranger::VMware::ESX;
+    use Apps::Ranger::VMware::Datacenter;
 
     my $cgi = Gantry::Engine::CGI->new( {
         config => {
             #...
         },
         locations => {
-            '/someurl' => 'Apps::Ranger::VMware::ESX',
+            '/someurl' => 'Apps::Ranger::VMware::Datacenter',
             #...
         },
     } );
@@ -46,12 +42,12 @@ httpd.conf:
 
     <Perl>
         # ...
-        use Apps::Ranger::VMware::ESX;
+        use Apps::Ranger::VMware::Datacenter;
     </Perl>
 
     <Location /someurl>
         SetHandler  perl-script
-        PerlHandler Apps::Ranger::VMware::ESX
+        PerlHandler Apps::Ranger::VMware::Datacenter
     </Location>
 
 If all went well, one of these was correctly written during app generation.

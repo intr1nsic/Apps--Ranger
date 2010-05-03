@@ -33,29 +33,30 @@ sub init {
     # process SUPER's init code
     $self->SUPER::init( $r );
 
-    $self->set_session_file( $self->fish_config( 'session_file' ) || '' );
+    $self->set_credstore( $self->fish_config( 'credstore' ) || '' );
     $self->set_username( $self->fish_config( 'username' ) || '' );
+    $self->set_session_path( $self->fish_config( 'session_path' ) || '' );
     $self->set_password( $self->fish_config( 'password' ) || '' );
     $self->set_service_url( $self->fish_config( 'service_url' ) || '' );
 } # END init
 
 
 #-----------------------------------------------------------------
-# $self->set_session_file( $new_value )
+# $self->set_credstore( $new_value )
 #-----------------------------------------------------------------
-sub set_session_file {
+sub set_credstore {
     my ( $self, $value ) = @_;
 
-    $self->{ __session_file__ } = $value;
+    $self->{ __credstore__ } = $value;
 }
 
 #-----------------------------------------------------------------
-# $self->session_file(  )
+# $self->credstore(  )
 #-----------------------------------------------------------------
-sub session_file {
+sub credstore {
     my $self = shift;
 
-    return $self->{ __session_file__ };
+    return $self->{ __credstore__ };
 }
 
 #-----------------------------------------------------------------
@@ -74,6 +75,24 @@ sub username {
     my $self = shift;
 
     return $self->{ __username__ };
+}
+
+#-----------------------------------------------------------------
+# $self->set_session_path( $new_value )
+#-----------------------------------------------------------------
+sub set_session_path {
+    my ( $self, $value ) = @_;
+
+    $self->{ __session_path__ } = $value;
+}
+
+#-----------------------------------------------------------------
+# $self->session_path(  )
+#-----------------------------------------------------------------
+sub session_path {
+    my $self = shift;
+
+    return $self->{ __session_path__ };
 }
 
 #-----------------------------------------------------------------
@@ -170,13 +189,17 @@ Apps::Ranger should inherit from this module.
 
 =item schema_base_class
 
-=item session_file
+=item credstore
 
-=item set_session_file
+=item set_credstore
 
 =item username
 
 =item set_username
+
+=item session_path
+
+=item set_session_path
 
 =item password
 
