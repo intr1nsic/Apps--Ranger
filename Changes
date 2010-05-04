@@ -1,5 +1,18 @@
 Revision history for Perl web application Apps::Ranger
 
+0.05  Mon May 4 00:48:00 2010
+	- Fix template typo
+
+0.04  Mon May 4 00:48:00 2010
+	- Add some more options to the inventory template
+	  - Hostname
+	  - Power state
+	  - Guest Family
+	  - IP Address
+
+0.03  Mon May 4 00:41:00 2010
+	- Add a open source template for testing purposes
+
 0.02  Tue Apr 20 23:05:00 2010
 	- update bigtop to expand out the different platforms and create
 	an option to expand onto other platforms like Xen or KVM

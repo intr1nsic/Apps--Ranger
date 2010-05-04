@@ -1,0 +1,40 @@
+---
+abstract: 'the base module of this web app'
+author:
+  - 'root, E<lt>root@localdomainE<gt>'
+configure_requires:
+  Module::Build: 0.36
+dynamic_config: 0
+generated_by: 'Module::Build version 0.3607'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Apps-Ranger
+provides:
+  Apps::GENRanger:
+    file: lib/Apps/GENRanger.pm
+  Apps::Ranger:
+    file: lib/Apps/Ranger.pm
+    version: 0.01
+  Apps::Ranger::Inventory:
+    file: lib/Apps/Ranger/Inventory.pm
+  Apps::Ranger::Model:
+    file: lib/Apps/Ranger/Model.pm
+  Apps::Ranger::VMware:
+    file: lib/Apps/Ranger/VMware.pm
+  Apps::Ranger::VMware::Datacenter:
+    file: lib/Apps/Ranger/VMware/Datacenter.pm
+  Apps::Ranger::VMware::ESX:
+    file: lib/Apps/Ranger/VMware/ESX.pm
+  Apps::Ranger::VMware::Pool:
+    file: lib/Apps/Ranger/VMware/Pool.pm
+  Apps::Ranger::VMware::VM:
+    file: lib/Apps/Ranger/VMware/VM.pm
+requires:
+  Gantry: 3.0
+  HTML::Prototype: 0
+  perl: 5
+resources:
+  license: http://dev.perl.org/licenses/
+version: 0.01

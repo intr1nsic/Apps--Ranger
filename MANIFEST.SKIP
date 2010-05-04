@@ -28,3 +28,4 @@
 # Avoid inline's dropings
 _Inline
 
+^MYMETA.yml$
