@@ -18,7 +18,7 @@
 		<tr>
 			<td class="first style1">[% entity.name %]</td>
 			<td>
-				[% IF entity.guest.runtime.powerState.val == "poweredOn" %]
+				[% IF entity.runtime.powerState.val == "poweredOn" %]
 					On
 				[% ELSE %]
 					Off

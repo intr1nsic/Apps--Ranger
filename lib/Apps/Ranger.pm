@@ -3,7 +3,7 @@ package Apps::Ranger;
 use strict;
 use warnings;
 
-our $VERSION = '0.07';
+our $VERSION = '0.09';
 
 use base 'Apps::GENRanger';
 use Apps::Ranger::VMware;
