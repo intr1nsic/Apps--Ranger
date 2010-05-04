@@ -1,5 +1,8 @@
 Revision history for Perl web application Apps::Ranger
 
+0.06  Mon May 4 00:48:00 2010
+	- Fix template typo
+
 0.05  Mon May 4 00:48:00 2010
 	- Fix template typo
 

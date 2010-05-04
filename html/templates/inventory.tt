@@ -18,20 +18,20 @@
 		<tr>
 			<td class="first style1">[% entity.name %]</td>
 			<td>
-				[% IF entity.runtime.powerState.val == "powerdOn" %]
+				[% IF entity.guest.runtime.powerState.val == "powerdOn" %]
 					On
 				[% ELSE %]
 					Off
 				[% END %]
 			</td>
 			<td>
-				[% IF entity.guestFamily == "linuxGuest" %]
+				[% IF entity.guest.guestFamily == "linuxGuest" %]
 					Linux
 				[% ELSE %]
 					Windows
 				[% END %]
 			</td>
-			<td>[% entity.ipAddress %]</td>
+			<td>[% entity.guest.ipAddress %]</td>
 			<td><img src="img/edit-icon.gif" width="16" height="16" alt="" /></td>
 			<td><img src="img/login-icon.gif" width="16" height="16" alt="" /></td>
 			<td><img src="img/save-icon.gif" width="16" height="16" alt="save" /></td>
