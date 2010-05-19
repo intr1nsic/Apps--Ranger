@@ -15,7 +15,7 @@ provides:
     file: lib/Apps/GENRanger.pm
   Apps::Ranger:
     file: lib/Apps/Ranger.pm
-    version: 0.01
+    version: 0.10
   Apps::Ranger::Inventory:
     file: lib/Apps/Ranger/Inventory.pm
   Apps::Ranger::Model:
@@ -36,4 +36,4 @@ requires:
   perl: 5
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.01
+version: 0.10

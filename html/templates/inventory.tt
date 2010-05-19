@@ -7,35 +7,35 @@
 		<tr>
 			<th class="first" width="177">VM Name</th>
 			<th>Power State</th>
-			<th>Guest</th>
-			<th>IP Address</th>
-			<th>Header</th>
-			<th>Head</th>
-			<th>Header</th>
-			<th class="last">Head</th>
+			<th>Status</th>
+			<th>Configured Memory</th>
+			<th>Host Memory</th>
+			<th>Guest Memory</th>
+			<th>Overal CPU</th>
+			<th>Details</th>
 		</tr>
 		[% FOREACH entity IN view.data.entities %]
 		<tr>
 			<td class="first style1">[% entity.name %]</td>
 			<td>
-				[% IF entity.runtime.powerState.val == "poweredOn" %]
+				[% IF entity.summary.runtime.powerState.val == "poweredOn" %]
 					On
 				[% ELSE %]
 					Off
 				[% END %]
 			</td>
 			<td>
-				[% IF entity.guest.guestFamily == "linuxGuest" %]
-					Linux
+				[% IF entity.summary.overallStatus.val == "green" %]
+					Good
 				[% ELSE %]
-					Windows
+					Bad
 				[% END %]
 			</td>
-			<td>[% entity.guest.ipAddress %]</td>
+			<td>[% entity.summary.runtime.maxMemoryUsage %] mb</td>
+			<td>[% entity.summary.quickStats.hostMemoryUsage %] mb</td>
+			<td>[% entity.summary.quickStats.guestMemoryUsage %] mb</td>
+			<td>[% entity.summary.quickStats.overallCpuUsage %] mhz</td>
 			<td><img src="img/edit-icon.gif" width="16" height="16" alt="" /></td>
-			<td><img src="img/login-icon.gif" width="16" height="16" alt="" /></td>
-			<td><img src="img/save-icon.gif" width="16" height="16" alt="save" /></td>
-			<td class="last"><img src="img/add-icon.gif" width="16" height="16" alt="add" /></td>
 		</tr>
 		[% END %]
 	</table>

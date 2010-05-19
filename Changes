@@ -1,5 +1,11 @@
 Revision history for Perl web application Apps::Ranger
 
+0.11  Wed May 19 00:48:00 2010
+	- Fix Table
+
+0.10  Wed May 19 00:48:00 2010
+	- Add more data to the inventory view
+
 0.09  Mon May 4 00:48:00 2010
 	- Add more data to the inventory view
 

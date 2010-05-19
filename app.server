@@ -23,7 +23,7 @@ my $dbname;
 
 my $conf_instance = 'apps_ranger';
 my $conf_type;
-my $conf_file     = '/etc/gantry.d/app.gantry.conf';
+my $conf_file     = 'docs/app.gantry.conf';
 
 GetOptions(
     'dbd|d=s'      => \$dbd,
